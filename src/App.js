@@ -1,11 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 class App extends Component {
   render() {
     return (
-      <div>
+      <Fragment>
         <h1>Hello World</h1>
-      </div>
+        <label htmlFor="bar">Bar</label>
+        <input type="text" onClick={(e) => (e.target.value = 'Hello World')} />
+      </Fragment>
     );
   }
 }
