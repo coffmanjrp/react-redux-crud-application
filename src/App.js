@@ -1,15 +1,18 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment } from 'react';
 
-class App extends Component {
-  render() {
-    return (
-      <Fragment>
-        <h1>Hello World</h1>
-        <label htmlFor="bar">Bar</label>
-        <input type="text" onClick={(e) => (e.target.value = 'Hello World')} />
-      </Fragment>
-    );
-  }
-}
+const App = () => {
+  return (
+    <Fragment>
+      <Cat />
+      <Cat />
+      <Cat />
+      <Cat />
+    </Fragment>
+  );
+};
+
+const Cat = () => {
+  return <p>Nya!</p>;
+};
 
 export default App;
