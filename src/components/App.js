@@ -1,79 +1,30 @@
 import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
+import { increment, decrement } from '../actions/index';
 
 class App extends Component {
   render() {
-    const profiles = [
-      { name: 'Paul', age: 35 },
-      { name: 'John', age: 32 },
-      { name: 'Noname', age: 3 },
-    ];
+    const props = this.props;
 
     return (
       <Fragment>
-        {profiles.map((profile, idx) => {
-          return <User name={profile.name} age={profile.age} key={idx} />;
-        })}
-
-        <Counter />
+        <div>value: {props.value}</div>
+        <button onClick={props.increment}>+1</button>
+        <button onClick={props.decrement}>-1</button>
       </Fragment>
     );
   }
 }
 
-class User extends Component {
-  constructor(props) {
-    super(props);
-    this.name = props.name;
-    this.age = props.age;
-  }
+const mapStateToProps = (state) => ({ value: state.count.value });
 
-  render() {
-    return (
-      <p>
-        Hi, I am {this.name}, and am {this.age} year{this.age === 1 ? '' : 's'}{' '}
-        old.
-      </p>
-    );
-  }
-}
+// const mapDispatchToProps = (dispatch) => ({
+//   increment: () => dispatch(increment()),
+//   decrement: () => dispatch(decrement()),
+// });
+const mapDispatchToProps = {
+  increment,
+  decrement,
+};
 
-class Counter extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      count: 0,
-    };
-
-    this.handlePlusButton = this.handlePlusButton.bind(this);
-    this.handleMinusButton = this.handleMinusButton.bind(this);
-  }
-
-  handlePlusButton() {
-    const { count } = this.state;
-
-    this.setState({
-      count: count + 1,
-    });
-  }
-
-  handleMinusButton() {
-    const { count } = this.state;
-
-    this.setState({
-      count: count > 0 ? count - 1 : 0,
-    });
-  }
-
-  render() {
-    return (
-      <Fragment>
-        <div>count: {this.state.count}</div>
-        <button onClick={this.handlePlusButton}>+1</button>
-        <button onClick={this.handleMinusButton}>-1</button>
-      </Fragment>
-    );
-  }
-}
-
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);
