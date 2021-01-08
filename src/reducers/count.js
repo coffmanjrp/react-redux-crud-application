@@ -11,6 +11,7 @@ export default (state = initialState, action) => {
       break;
     case DECREMENT:
       return { value: state.value - 1 };
+      break;
     default:
       return state;
       break;
