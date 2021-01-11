@@ -1,5 +1,11 @@
 import _ from 'lodash';
-import { READ_EVENTS, READ_EVENT, DELETE_EVENT } from '../actions/index';
+import {
+  READ_EVENTS,
+  READ_EVENT,
+  CREATE_EVENT,
+  UPDATE_EVENT,
+  DELETE_EVENT,
+} from '../actions/index';
 
 /* eslint import/no-anonymous-default-export: [2, {"allowArrowFunction": true}] */
 export default (events = {}, action) => {
@@ -7,6 +13,8 @@ export default (events = {}, action) => {
     case READ_EVENTS:
       return _.mapKeys(action.response.data, 'id');
     case READ_EVENT:
+    case CREATE_EVENT:
+    case UPDATE_EVENT:
       const data = action.response.data;
       return { ...events, [data.id]: data };
     case DELETE_EVENT:

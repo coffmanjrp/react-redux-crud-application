@@ -43,7 +43,7 @@ class EventsIndex extends Component {
           <tbody>{this.renderEvents()}</tbody>
         </table>
 
-        <Link to="/events_new">New Event</Link>
+        <Link to="/events/new">New Event</Link>
       </Fragment>
     );
   }
